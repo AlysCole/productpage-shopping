@@ -24,7 +24,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname),
-    filename: "[name].[hash].js"
+    filename: "[name].js"
   },
 
   devtool: "source-map",
@@ -68,7 +68,15 @@ module.exports = {
       },
       {
         "test": /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        "loader": 'file-loader',
+        "use": [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/"
+            }
+          }
+        ]
       },
     ]
   },
